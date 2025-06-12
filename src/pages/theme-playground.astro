@@ -1,0 +1,96 @@
+---
+import LightSwitch from '../components/LightSwitch.astro';
+import ThemePalette from '../components/ThemePalette.astro';
+import BaseLayout from '../layouts/ThemePlay.astro';
+const colors = [
+  'bg', 'primary', 'secondary', 'surface',
+  'subtle', 'hover', 'border', 'text'
+];
+
+---
+
+<BaseLayout title="Theme Playground" description="Test all Ashiful Institute theme variations.">
+  <section class="py-16 space-y-12">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-primary">🎨 Theme Playground</h1>
+      <p class="text-subtle mt-2">Switch themes and see how it affects styles below.</p>
+      <div class="mt-4 inline-block">
+        <ThemePalette/> <LightSwitch/>
+      </div>
+    </div>
+
+    <!-- Test Blocks -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+      <div class="bg-surface text-subtle p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold text-primary mb-2">Primary Card</h2>
+        <p>This is a test block using current theme colors.</p>
+        <button class="mt-4 bg-hover text-white px-4 py-2 rounded">Action</button>
+      </div>
+
+      <div class="bg-bg text-text p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold text-secondary mb-2">Background Test</h2>
+        <p>Background + Secondary contrast check.</p>
+      </div>
+
+      <div class="border border-border p-6 rounded-lg">
+        <h2 class="text-xl font-semibold text-subtle mb-2">Neutral Block</h2>
+        <p>Text and borders based on current theme tokens.</p>
+      </div>
+    </div>
+
+    <!-- Variable Inspector -->
+    <div class="px-4">
+      <h2 class="text-2xl text-primary font-bold mb-2">Current Theme Variables:</h2>
+      <pre class="bg-surface text-text p-4 rounded overflow-auto text-sm font-mono">
+--color-bg: <span id="bg"></span>;
+--color-primary: <span id="primary"></span>;
+--color-secondary: <span id="secondary"></span>;
+--color-surface: <span id="surface"></span>;
+--color-subtle: <span id="subtle"></span>;
+--color-hover: <span id="hover"></span>;
+--color-border: <span id="border"></span>;
+--color-text: <span id="text"></span>;
+      </pre>
+    </div>
+
+    <!-- Color Palette -->
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4">
+  {colors.map(color => (
+    <div class="flex flex-col items-center p-4 rounded text-white"
+         style={`background-color: var(--color-${color});`}>
+      
+      <!-- Star with border -->
+  <div class="p-6">
+ <svg
+  class="w-15 h-15"
+  viewBox="0 0 20 20"
+  fill={`var(--color-${color})`}
+  stroke={`var(--color-border)`}
+  stroke-width="2"
+>
+  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.285 3.956a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.285 3.956c.3.921-.755 1.688-1.54 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.838-.197-1.539-1.118l1.285-3.956a1 1 0 00-.364-1.118L2.174 9.383c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.285-3.956z" />
+</svg>
+</div>
+
+      <span class="mt-2 text-xs">{color}</span>
+    </div>
+  ))}
+</div>
+
+  </section>
+
+  <script>
+    function updateVars() {
+      const styles = getComputedStyle(document.body);
+      const vars = ['bg', 'primary', 'secondary', 'surface', 'subtle', 'hover', 'border', 'text'];
+      vars.forEach(name => {
+        const el = document.getElementById(name);
+        if (el) el.textContent = styles.getPropertyValue(`--color-${name}`).trim();
+      });
+    }
+
+    updateVars();
+    document.querySelector('[data-theme-toggle]')?.addEventListener('change', updateVars);
+  </script>
+</BaseLayout>

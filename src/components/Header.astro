@@ -1,0 +1,62 @@
+---
+import LightSwitch from './ui/LightSwitch.astro';
+import ThemePalette from './ui/ThemePalette.astro';
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/programs', label: 'Programs' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<!-- Wrapper group to enable hover -->
+<div id="header-wrapper" class="group fixed top-0 left-0 w-full z-50">
+
+  <!-- Hover zone for desktop -->
+  <div class="w-full h-6 md:block hidden"></div>
+
+  <!-- Header -->
+  <header id="main-header"
+    class="w-full px-6 py-4 flex items-center justify-between 
+    bg-[var(--color-surface)] text-[var(--color-text)] border-b border-[var(--color-border)] 
+    shadow-md transition-all duration-300 ease-in-out
+    opacity-100 pointer-events-auto
+    md:opacity-0 md:pointer-events-none 
+    group-hover:opacity-100 group-hover:pointer-events-auto"
+    onclick="document.body.classList.toggle('header-pinned')"
+  >
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2">
+      <img src="/images/logo.svg" alt="AI logo" class="w-12 h-12" />
+      <span class="hidden md:inline text-2xl font-bold tracking-tight text-[var(--color-primary)]">
+        Ashiful Institute
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex gap-6 items-center">
+      {navItems.map(({ href, label }) => (
+        <a href={href} class="hover:text-[var(--color-hover)] transition font-medium">
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right side controls -->
+    <div class="flex items-center gap-3">
+      <ThemePalette />
+      <LightSwitch />
+    </div>
+  </header>
+</div>
+
+<!-- Persistent pin style injected via script -->
+<style>
+  @media (min-width: 768px) {
+    body.header-pinned #main-header {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+  }
+</style>

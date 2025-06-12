@@ -1,0 +1,16 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="1.9106048in" height="1.0873151in" viewBox="0 0 48.529363 27.617803" xmlns="http://www.w3.org/2000/svg">
+  <!-- Layer 2 -->
+  <g transform="translate(-21.355902,-23.392776)">
+    <rect width="1.8718711" height="9.9446659" x="28.466415" y="53.55336" transform="rotate(-37.730941)" fill="currentColor"></rect>
+    <ellipse cx="55.300091" cy="26.453613" rx="1.2422669" ry="1.2526187" fill="#ffe680"></ellipse>            <!-- lamp bulb keeps its yellow -->
+    <path d="m 52.235239,26.195461 c 0,0 0.389949,-2.405852 2.65565,-2.771542 2.265701,-0.365689 3.281431,2.60988 3.281431,2.60988 z" fill="currentColor"></path>
+  </g>
+
+  <!-- Layer 1 -->
+  <g transform="translate(-21.355902,-23.392776)">
+    <rect width="48.529362" height="4.2483153" x="21.355902" y="31.725224" fill="currentColor"></rect>
+    <rect width="2.9615629" height="16.113752" x="29.727774" y="34.896828" fill="currentColor"></rect>
+    <rect width="2.9615629" height="16.113752" x="59.237156" y="34.708782" fill="currentColor"></rect>
+  </g>
+</svg>
