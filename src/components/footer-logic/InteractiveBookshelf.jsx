@@ -55,7 +55,7 @@ export default function InteractiveBookshelf() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="relative w-full min-h-[400px] bg-[url('/assets/floor-texture.svg')] bg-repeat rounded-t-xl overflow-hidden">
+      <div className="relative w-full min-h-[400px] bg-[url('/assets/footer/graphpaper.svg')] bg-repeat rounded-t-xl overflow-hidden">
 
         {/* decorative rectangles */}
         {randomRects.map((r, i) => (
